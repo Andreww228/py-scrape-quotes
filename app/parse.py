@@ -1,6 +1,4 @@
-import asyncio
 import dataclasses
-from dataclasses import astuple
 from dataclasses import dataclass
 import csv
 
@@ -8,7 +6,8 @@ import httpx
 from bs4 import BeautifulSoup
 from bs4 import Tag
 
-ROOT_URL = 'https://quotes.toscrape.com/'
+
+ROOT_URL = "https://quotes.toscrape.com/"
 
 
 @dataclass
@@ -42,9 +41,9 @@ def parse_quotes_page(
     return [parse_quote(quote_soup) for quote_soup in quotes]
 
 
-def write_quotes_to_csv(quotes: list[Quote], file: str) -> None:
-    with open(file, "w", encoding='utf-8') as file:
-        writer = csv.writer(file)
+def write_quotes_to_csv(quotes: list[Quote], file_name: str) -> None:
+    with open(file_name, "w", encoding="utf-8") as file_name:
+        writer = csv.writer(file_name)
         writer.writerow(QUOTE_FIELDS)
         for quote in quotes:
             writer.writerow([quote.text, quote.author, ", ".join(quote.tags)])
