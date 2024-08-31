@@ -42,11 +42,11 @@ def parse_quotes_page(
 
 
 def write_quotes_to_csv(quotes: list[Quote], file_name: str) -> None:
-    with open(file_name, "w", encoding="utf-8") as file_name:
+    with open(file_name, "w", encoding="utf-8", newline="") as file_name:
         writer = csv.writer(file_name)
         writer.writerow(QUOTE_FIELDS)
         for quote in quotes:
-            writer.writerow([quote.text, quote.author, ", ".join(quote.tags)])
+            writer.writerow([quote.text, quote.author, str(quote.tags)])
 
 
 def main(output_csv_path: str) -> None:
